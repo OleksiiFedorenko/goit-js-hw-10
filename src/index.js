@@ -1,5 +1,6 @@
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { fetchCountries } from './js/fetchCountries';
 import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
@@ -76,13 +77,6 @@ function createCountryInfoMarkup({
 function clearElements() {
   refs.countryList.innerHTML = '';
   refs.countryInfo.innerHTML = '';
-}
-
-function fetchCountries(input) {
-  return fetch(`https://restcountries.com/v3.1/name/${input}`).then(r => {
-    if (!r.ok) Notify.failure('Oops, there is no country with that name');
-    return r.json();
-  });
 }
 
 // function createCountriesMarkupArr(countries) {
